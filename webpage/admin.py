@@ -2,5 +2,9 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import SignUp
+from .forms import SignUpForm
 
-admin.site.register(SignUp)
+class SignUpAdmin(admin.ModelAdmin):
+	form = SignUpForm
+
+admin.site.register(SignUp, SignUpAdmin)
