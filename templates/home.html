@@ -1,5 +1,11 @@
 <h1>{{ template_title }}</h1>
 
+<form method='POST' action=''> {% csrf_token %}
+{{ form.as_p }}
+<input type='submit' value='Sign Up' />
+
+
+</form>
 <!-- POTENTIAL SECURITY ISSUE TO USE RAW HTML FORM
 <form method='' action=''>
 <input type='text'>
