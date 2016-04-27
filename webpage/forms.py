@@ -2,6 +2,14 @@ from django import forms
 
 from .models import SignUp
 
+
+
+class ContactForm(forms.Form):
+	full_name = forms.CharField(max_length=120,required=False)
+	email = forms.EmailField()
+	phone = forms.RegexField(regex=r'^\+?1?\d{9,15}$', error_message=("A Valid Phone number must be entered"))
+	message = forms.CharField(widget=forms.Textarea)
+
 class SignUpForm(forms.ModelForm):
 	class Meta:
 		model = SignUp
