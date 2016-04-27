@@ -27,6 +27,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'gmailaddress@gmail.com'
+EMAIL_HOST_PASSWORD = 'gmail password'
+EMAIL_PORT = 587
+EMAIL USE_TLS = True
+
+#accounts.google.com/displayunlockcaptcha
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
+
 
 # Application definition
 

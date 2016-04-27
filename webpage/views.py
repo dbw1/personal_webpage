@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.core.mail import send_mail
 from django.shortcuts import render
 
 from .forms import ContactForm, SignUpForm
@@ -41,8 +43,27 @@ def home(request):
 def contact(request):
 	form = ContactForm(request.POST or None)
 	if form.is_valid():
-		for key in form.cleaned_data:
-			print (key, form.cleaned_data.get(key)) #get(key) returns key value
+		full_name = form.cleaned_data.get("full_name")
+		form_email = form.cleaned_data.get("email")
+		phone = form.cleaned_data.get("phone")
+		message = form.cleaned_data.get("message")
+		subject = 'Site Contact Form'
+		email_from_add = settings.EMAIL_HOST_USER
+		recipient_list = [email_from_add]
+		contact_message = """
+		Name: %s
+		Phone Number: %s
+		Email: %s
+		Message: %s
+		""" % (full_name, phone, form_email, message)
+		send_mail(subject,
+				contact_message,
+				email_from_add,
+				recipient_list,
+				fail_silently=True)
+
+		# for key in form.cleaned_data:
+		# 	print (key, form.cleaned_data.get(key)) #get(key) returns key value
 	context = {
 		"form" : form
 	}
