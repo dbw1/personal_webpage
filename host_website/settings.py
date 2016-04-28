@@ -31,7 +31,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'gmailaddress@gmail.com'
 EMAIL_HOST_PASSWORD = 'gmail password'
 EMAIL_PORT = 587
-EMAIL USE_TLS = True
+EMAIL_USE_TLS = True
 
 #accounts.google.com/displayunlockcaptcha
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -127,7 +127,18 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, Images) saved in the database
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_offsite")  #where the files go to
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    #'/var/www/static/', directory that stores all your static files outside of your project
+]
+
+# for all things uploaded to site (for example by user)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_offsite")  #where the files go to
