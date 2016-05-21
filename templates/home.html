@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 <h1>{{ title }}</h1>
 
 <form method='POST' action=''> {% csrf_token %}
@@ -6,6 +9,8 @@
 
 
 </form>
+
+{% endblock %}
 <!-- POTENTIAL SECURITY ISSUE TO USE RAW HTML FORM
 <form method='' action=''>
 <input type='text'>
